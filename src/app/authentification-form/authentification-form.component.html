@@ -1,0 +1,33 @@
+<form #auth="ngForm" >
+    <label for="email">Email</label>
+    <input email 
+      required
+      ngModel 
+      name="emailadress"
+      #emailaddress="ngModel"
+      type="text"
+      id="email"
+      class="form-control"
+      formControlName="email"
+    />
+    <div
+    *ngIf="emailaddress.invalid && emailaddress.touched"
+    class="alert alert-danger">
+    Veuillez saisir un email valide
+  </div>
+    <br/>
+    <label for="password">Password</label>
+    <input
+      minlength="4"
+      required
+      ngModel 
+      #pwd="ngModel"
+      name="pwd"
+      type="password"
+      id="password"
+      class="form-control"
+      formControlName="password"
+    />
+    <br/>
+    <button class="btn btn-primary" type="submit" [disabled]="auth?.invalid ?? false" (click)="login(auth)">S'authentifier</button>
+  </form>
