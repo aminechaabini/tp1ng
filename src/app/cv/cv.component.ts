@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Cv } from '../models/cv'
 import { CvServiceService } from '../services/cv-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cv',
@@ -10,18 +11,18 @@ import { CvServiceService } from '../services/cv-service.service';
 export class CvComponent {
   cvs: Cv[]= [];
   constructor(
-    private cvService: CvServiceService
+    private cvService: CvServiceService,
+    private readonly toasterService: ToastrService,
   ){
-    this.cvService.getCvs().subscribe(
-      (cvs) => {
+    this.cvService.getCvs().subscribe({
+      next: (cvs) => {
         this.cvs = cvs;
       },
-      (error) =>{
-        alert('Probleme dans l acces a l api')
-        this.cvService.getLocalCvs();
+      error: (err) => {
+        this.toasterService.error('API problem');
+        this.cvs = this.cvService.getLocalCvs() ;
       }
-
-    );
+    });
   }
 
   selectedCv: Cv | null = null;

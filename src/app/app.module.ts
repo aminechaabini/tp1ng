@@ -13,6 +13,11 @@ import { ItemCvComponent } from './item-cv/item-cv.component';
 import { DetailCvComponent } from './detail-cv/detail-cv.component';
 import { EmbaucheComponent } from './embauche/embauche.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { ToastrModule } from 'ngx-toastr';
+import { DetailsPersonComponent } from './details-person/details-person.component';
+import { AuthentificationFormComponent } from './authentification-form/authentification-form.component';
+
 
 @NgModule({
   declarations: [
@@ -25,13 +30,17 @@ import { HttpClientModule } from '@angular/common/http';
     ItemCvComponent,
     DetailCvComponent,
     EmbaucheComponent,
+    NavBarComponent,
+    DetailsPersonComponent,
+    AuthentificationFormComponent,
     
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]
